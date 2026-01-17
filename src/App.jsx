@@ -1,39 +1,18 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import logo from "./assets/logo-gm.jpg"; // ajustá extensión si es png/jpg
 
 export default function App() {
-  // ✅ LINKS REALES
-  const MP_BASICO = "https://mpago.la/2K8ub3V";
-  const MP_PRO = null; // <-- pegá acá el link real cuando lo tengas, ej: "https://mpago.la/XXXX"
-  const MP_MENTORIA = "https://mpago.la/2xFDGa9";
-  const CV_LINK =
-    "https://drive.google.com/file/d/1dG_Z0P3QUMzpfiAU0cvCcDo7oX0Ry9M1/view?usp=sharing";
+  // ✅ Placeholders MercadoPago (después pegás los links reales)
+const MP_BASICO = " https://mpago.la/2K8ub3V";
+const MP_PRO = "...";
+const MP_MENTORIA = "https://mpago.la/2xFDGa9";
+const CV_LINK = "https://drive.google.com/file/d/1dG_Z0P3QUMzpfiAU0cvCcDo7oX0Ry9M1/view?usp=sharing";
+
 
   const scrollToId = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
-
-  // ✅ Responsive sin leaks: usamos estado + useEffect con cleanup
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const m = window.matchMedia("(max-width: 980px)");
-    const apply = () => setIsMobile(m.matches);
-    apply();
-
-    // Safari viejo usa addListener/removeListener
-    if (m.addEventListener) m.addEventListener("change", apply);
-    else m.addListener(apply);
-
-    return () => {
-      if (m.removeEventListener) m.removeEventListener("change", apply);
-      else m.removeListener(apply);
-    };
-  }, []);
-
-  // ✅ Styles “reactivos” según isMobile
-  const S = useMemo(() => makeStyles(isMobile), [isMobile]);
 
   return (
     <div style={S.page}>
@@ -53,38 +32,10 @@ export default function App() {
             </div>
 
             <nav style={S.navLinks}>
-              <button style={S.navBtn} onClick={() => scrollToId("programa")}>
-                Programa
-              </button>
-              <button style={S.navBtn} onClick={() => scrollToId("temario")}>
-                Temario
-              </button>
-              <button style={S.navBtn} onClick={() => scrollToId("planes")}>
-                Planes
-              </button>
-              <button style={S.navBtn} onClick={() => scrollToId("contacto")}>
-                Contacto
-              </button>
-
-              {/* ✅ CTA NAVBAR */}
-              <a
-                href={CV_LINK}
-                target="_blank"
-                rel="noreferrer"
-                style={S.navLinkBtn}
-                title="Abrir CV en otra pestaña"
-              >
-                Ver CV
-              </a>
-              <a
-                href={MP_BASICO}
-                target="_blank"
-                rel="noreferrer"
-                style={S.navPayBtn}
-                title="Ir a pago Básico"
-              >
-                Pagar
-              </a>
+              <button style={S.navBtn} onClick={() => scrollToId("programa")}>Programa</button>
+              <button style={S.navBtn} onClick={() => scrollToId("temario")}>Temario</button>
+              <button style={S.navBtn} onClick={() => scrollToId("planes")}>Planes</button>
+              <button style={S.navBtn} onClick={() => scrollToId("contacto")}>Contacto</button>
             </nav>
           </div>
         </div>
@@ -95,40 +46,34 @@ export default function App() {
         <div style={S.container}>
           <section style={S.hero}>
             <div style={S.heroLeft}>
-              <div style={S.badge}>
-                Método práctico • Guardia real • Decisiones seguras
-              </div>
+              <div style={S.badge}>Método práctico • Guardia real • Decisiones seguras</div>
 
               <h1 style={S.h1}>
-                Pensá como emergentólogo en guardia.
-                <span style={S.h1Accent}> Sin humo. Con método.</span>
+              Pensá como emergentólogo en guardia.
+              <span style={S.h1Accent}> Sin humo. Con método.</span>
               </h1>
 
-              <p style={{ ...S.lead, marginTop: "12px", fontWeight: 700 }}>
-                PROGRAMA DEL DR. FEDERICO DE NICOLA – MÉDICO EMERGENTÓLOGO CON
-                EXPERIENCIA.
-              </p>
+                <p style={{ ...S.lead, marginTop: "12px", fontWeight: 700 }}>
+                 PROGRAMA DEL DR. FEDERICO DE NICOLA – MÉDICO EMERGENTÓLOGO CON EXPERIENCIA.
+                </p>
 
-              <div style={S.ctaRow}>
-                <button
-                  style={S.primaryBtn}
-                  onClick={() => scrollToId("planes")}
-                >
+
+                <div style={S.ctaRow}>
+                <button style={S.primaryBtn} onClick={() => scrollToId("planes")}>
                   Ver planes
                 </button>
-                <button
-                  style={S.secondaryBtn}
-                  onClick={() => scrollToId("programa")}
-                >
+                <button style={S.secondaryBtn} onClick={() => scrollToId("programa")}>
                   Ver cómo es
                 </button>
-
-                {/* ✅ CV HERO */}
-                <a href={CV_LINK} target="_blank" rel="noreferrer" style={S.cvBtn}>
-                  Ver CV
-                </a>
-              </div>
-
+             <a
+    href={CV_LINK}
+    target="_blank"
+    rel="noreferrer"
+    style={S.cvBtn}
+  >
+    Ver CV
+  </a>
+</div>
               <div style={S.metricsRow}>
                 <div style={S.metricCard}>
                   <div style={S.metricTop}>+40</div>
@@ -183,8 +128,7 @@ export default function App() {
           <section id="programa" style={S.section}>
             <h2 style={S.h2}>Cómo funciona</h2>
             <p style={S.sectionLead}>
-              Te llevo de lo básico a lo crítico con una estructura simple y
-              repetible.
+              Te llevo de lo básico a lo crítico con una estructura simple y repetible.
             </p>
 
             <div style={S.grid3}>
@@ -243,8 +187,7 @@ export default function App() {
           <section id="planes" style={S.section}>
             <h2 style={S.h2}>Planes</h2>
             <p style={S.sectionLead}>
-              Ya están conectados los links de MercadoPago del Básico y Mentoría.
-              El Pro queda en “Próximamente” hasta que pegues el link real.
+              Listos para conectar con MercadoPago. Por ahora están con links placeholder.
             </p>
 
             <div style={S.pricingGrid}>
@@ -252,7 +195,11 @@ export default function App() {
                 title="Básico"
                 price="$XX.XXX"
                 desc="Acceso al curso base + actualizaciones."
-                bullets={["Clases on-demand", "Checklists descargables", "Casos guiados"]}
+                bullets={[
+                  "Clases on-demand",
+                  "Checklists descargables",
+                  "Casos guiados",
+                ]}
                 href={MP_BASICO}
                 highlight={false}
               />
@@ -261,7 +208,11 @@ export default function App() {
                 title="Pro"
                 price="$XX.XXX"
                 desc="Para el que quiere subir nivel rápido."
-                bullets={["Todo lo del Básico", "Casos extra + simulaciones", "Material de guardia listo"]}
+                bullets={[
+                  "Todo lo del Básico",
+                  "Casos extra + simulaciones",
+                  "Material de guardia listo",
+                ]}
                 href={MP_PRO}
                 highlight={true}
                 badge="RECOMENDADO"
@@ -271,7 +222,11 @@ export default function App() {
                 title="Mentoría"
                 price="$XX.XXX"
                 desc="Corrección y acompañamiento."
-                bullets={["Todo lo del Pro", "1:1 (cupos limitados)", "Plan de mejora personal"]}
+                bullets={[
+                  "Todo lo del Pro",
+                  "1:1 (cupos limitados)",
+                  "Plan de mejora personal",
+                ]}
                 href={MP_MENTORIA}
                 highlight={false}
               />
@@ -285,8 +240,7 @@ export default function App() {
               <div>
                 <div style={S.contactTitle}>¿Querés sumarte o consultarme?</div>
                 <div style={S.contactText}>
-                  Dejá tu WhatsApp o escribime. Después armamos automatización
-                  (Mail + MP + acceso).
+                  Dejá tu WhatsApp o escribime. Después armamos automatización (Mail + MP + acceso).
                 </div>
               </div>
               <div style={S.contactBtns}>
@@ -298,7 +252,10 @@ export default function App() {
                 >
                   WhatsApp
                 </a>
-                <a style={S.secondaryBtnA} href="mailto:guardia.mental@tudominio.com">
+                <a
+                  style={S.secondaryBtnA}
+                  href="mailto:guardia.mental@tudominio.com"
+                >
                   Email
                 </a>
               </div>
@@ -311,37 +268,16 @@ export default function App() {
               <img src={logo} alt="GM" style={S.footerLogo} />
               <div>
                 <div style={S.footerTitle}>GUARDIA MENTAL</div>
-                <div style={S.footerSub}>
-                  Entrenamiento real para médicos de guardia
-                </div>
+                <div style={S.footerSub}>Entrenamiento real para médicos de guardia</div>
               </div>
             </div>
-
             <div style={S.footerRight}>
-              <a
-                style={S.footerLink}
-                href="#planes"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToId("planes");
-                }}
-              >
+              <a style={S.footerLink} href="#planes" onClick={(e) => { e.preventDefault(); scrollToId("planes"); }}>
                 Planes
               </a>
               <span style={S.footerDot}>•</span>
-              <a
-                style={S.footerLink}
-                href="#contacto"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToId("contacto");
-                }}
-              >
+              <a style={S.footerLink} href="#contacto" onClick={(e) => { e.preventDefault(); scrollToId("contacto"); }}>
                 Contacto
-              </a>
-              <span style={S.footerDot}>•</span>
-              <a style={S.footerLink} href={CV_LINK} target="_blank" rel="noreferrer">
-                CV
               </a>
             </div>
           </footer>
@@ -352,7 +288,6 @@ export default function App() {
 }
 
 function PlanCard({ title, price, desc, bullets, href, highlight, badge }) {
-  const S = makeStyles(false); // estilos base (los responsive los maneja el padre)
   return (
     <div style={{ ...S.planCard, ...(highlight ? S.planCardHighlight : {}) }}>
       <div style={S.planTop}>
@@ -367,298 +302,221 @@ function PlanCard({ title, price, desc, bullets, href, highlight, badge }) {
 
       <ul style={S.planUl}>
         {bullets.map((b, i) => (
-          <li key={i} style={S.planLi}>
-            ✓ {b}
-          </li>
+          <li key={i} style={S.planLi}>✓ {b}</li>
         ))}
       </ul>
 
-      {href ? (
-        <a href={href} target="_blank" rel="noreferrer" style={S.buyBtn}>
-          Pagar con MercadoPago
-        </a>
-      ) : (
-        <button style={S.buyBtnDisabled} disabled>
-          Próximamente
-        </button>
-      )}
+      <a href={href} target="_blank" rel="noreferrer" style={S.buyBtn}>
+        Pagar con MercadoPago
+      </a>
 
-      <div style={S.planHint}>
-        {href ? "*Link de pago activo." : "*Pago en preparación. Sumate a la lista de espera."}
-      </div>
+      <div style={S.planHint}>*Link de pago (placeholder). Luego lo conectamos al real.</div>
     </div>
   );
 }
 
-function makeStyles(isMobile) {
-  const S = {
-    page: {
-      minHeight: "100vh",
-      width: "100%",
-      background: "#0b0f14",
-      color: "rgba(255,255,255,0.92)",
-      fontFamily:
-        'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif',
-      position: "relative",
-      overflowX: "hidden",
-    },
-    bgGlow: {
-      position: "absolute",
-      inset: 0,
-      background:
-        "radial-gradient(1200px 600px at 15% 10%, rgba(255,0,0,0.14), transparent 55%), radial-gradient(900px 500px at 80% 25%, rgba(255,0,0,0.08), transparent 60%)",
-      pointerEvents: "none",
-    },
+const S = {
+  page: {
+    minHeight: "100vh",
+    width: "100%",
+    background: "#0b0f14",
+    color: "rgba(255,255,255,0.92)",
+    fontFamily:
+      'ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif',
+    position: "relative",
+    overflowX: "hidden",
+  },
+  bgGlow: {
+    position: "absolute",
+    inset: 0,
+    background:
+      "radial-gradient(1200px 600px at 15% 10%, rgba(255,0,0,0.14), transparent 55%), radial-gradient(900px 500px at 80% 25%, rgba(255,0,0,0.08), transparent 60%)",
+    pointerEvents: "none",
+  },
 
-    container: { width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 24px" },
+  container: { width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 24px" },
 
-    navWrap: {
-      position: "sticky",
-      top: 0,
-      zIndex: 20,
-      backdropFilter: "blur(10px)",
-      background: "rgba(11,15,20,0.72)",
-      borderBottom: "1px solid rgba(255,255,255,0.08)",
-    },
-    nav: {
-      height: 72,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: 18,
-    },
-    brand: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      cursor: "pointer",
-      userSelect: "none",
-    },
-    logo: { width: 44, height: 44, borderRadius: 10, objectFit: "cover" },
-    brandTitle: { fontWeight: 900, letterSpacing: 1 },
-    brandSubtitle: { fontSize: 12, opacity: 0.75, marginTop: 2 },
+  navWrap: {
+    position: "sticky",
+    top: 0,
+    zIndex: 20,
+    backdropFilter: "blur(10px)",
+    background: "rgba(11,15,20,0.72)",
+    borderBottom: "1px solid rgba(255,255,255,0.08)",
+  },
+  nav: {
+    height: 72,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 18,
+  },
+  brand: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    cursor: "pointer",
+    userSelect: "none",
+  },
+  logo: { width: 44, height: 44, borderRadius: 10, objectFit: "cover" },
+  brandTitle: { fontWeight: 900, letterSpacing: 1 },
+  brandSubtitle: { fontSize: 12, opacity: 0.75, marginTop: 2 },
 
-    navLinks: { display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" },
-    navBtn: {
-      background: "transparent",
-      border: "1px solid rgba(255,255,255,0.10)",
-      color: "rgba(255,255,255,0.86)",
-      padding: "10px 12px",
-      borderRadius: 12,
-      cursor: "pointer",
-      fontSize: 13,
-      whiteSpace: "nowrap",
-    },
+  navLinks: { display: "flex", gap: 10, flexWrap: "wrap" },
+  navBtn: {
+    background: "transparent",
+    border: "1px solid rgba(255,255,255,0.10)",
+    color: "rgba(255,255,255,0.86)",
+    padding: "10px 12px",
+    borderRadius: 12,
+    cursor: "pointer",
+    fontSize: 13,
+  },
 
-    navLinkBtn: {
-      textDecoration: "none",
-      border: "1px solid rgba(255,255,255,0.12)",
-      background: "rgba(255,255,255,0.05)",
-      color: "rgba(255,255,255,0.92)",
-      padding: "10px 12px",
-      borderRadius: 12,
-      fontSize: 13,
-      fontWeight: 800,
-      whiteSpace: "nowrap",
-    },
+  main: { position: "relative", padding: "34px 0 60px" },
 
-    navPayBtn: {
-      textDecoration: "none",
-      border: "1px solid rgba(255,255,255,0.12)",
-      background: "linear-gradient(135deg, rgba(255,40,40,0.95), rgba(220,0,0,0.95))",
-      color: "white",
-      padding: "10px 12px",
-      borderRadius: 12,
-      fontSize: 13,
-      fontWeight: 900,
-      whiteSpace: "nowrap",
-    },
+  hero: {
+    display: "grid",
+    gridTemplateColumns: "1.12fr 0.88fr",
+    gap: 24,
+    alignItems: "start",
+    paddingTop: 20,
+  },
+  heroLeft: { paddingRight: 8 },
 
-    main: { position: "relative", padding: "34px 0 60px" },
+  badge: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "8px 12px",
+    borderRadius: 999,
+    border: "1px solid rgba(255,255,255,0.12)",
+    background: "rgba(255,255,255,0.04)",
+    fontSize: 12,
+    opacity: 0.92,
+    marginBottom: 18,
+  },
+  h1: {
+    margin: 0,
+    fontSize: 54,
+    lineHeight: 1.05,
+    letterSpacing: -1,
+    fontWeight: 950,
+  },
+  h1Accent: { color: "rgba(255,255,255,0.75)" },
+  lead: { marginTop: 14, marginBottom: 22, fontSize: 16, lineHeight: 1.6, opacity: 0.86, maxWidth: 620 },
 
-    hero: {
-      display: "grid",
-      gridTemplateColumns: isMobile ? "1fr" : "1.12fr 0.88fr",
-      gap: 24,
-      alignItems: "start",
-      paddingTop: 20,
-    },
-    heroLeft: { paddingRight: 8 },
+  ctaRow: { display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 22 },
+  primaryBtn: {
+    background: "linear-gradient(135deg, rgba(255,40,40,0.95), rgba(220,0,0,0.95))",
+    border: "1px solid rgba(255,255,255,0.12)",
+    color: "white",
+    padding: "12px 16px",
+    borderRadius: 14,
+    cursor: "pointer",
+    fontWeight: 800,
+  },
+  secondaryBtn: {
+    background: "rgba(255,255,255,0.05)",
+    border: "1px solid rgba(255,255,255,0.14)",
+    color: "rgba(255,255,255,0.9)",
+    padding: "12px 16px",
+    borderRadius: 14,
+    cursor: "pointer",
+    fontWeight: 700,
+  },
 
-    badge: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 8,
-      padding: "8px 12px",
-      borderRadius: 999,
-      border: "1px solid rgba(255,255,255,0.12)",
-      background: "rgba(255,255,255,0.04)",
-      fontSize: 12,
-      opacity: 0.92,
-      marginBottom: 18,
-    },
-    h1: {
-      margin: 0,
-      fontSize: isMobile ? 42 : 54,
-      lineHeight: 1.05,
-      letterSpacing: -1,
-      fontWeight: 950,
-    },
-    h1Accent: { color: "rgba(255,255,255,0.75)" },
-    lead: {
-      marginTop: 14,
-      marginBottom: 22,
-      fontSize: 16,
-      lineHeight: 1.6,
-      opacity: 0.86,
-      maxWidth: 620,
-    },
+  metricsRow: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginTop: 8, maxWidth: 620 },
+  metricCard: {
+    border: "1px solid rgba(255,255,255,0.10)",
+    background: "rgba(255,255,255,0.04)",
+    borderRadius: 16,
+    padding: "12px 14px",
+  },
+  metricTop: { fontWeight: 900, fontSize: 16 },
+  metricBottom: { fontSize: 12, opacity: 0.75, marginTop: 2 },
 
-    ctaRow: { display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 22 },
-    primaryBtn: {
-      background: "linear-gradient(135deg, rgba(255,40,40,0.95), rgba(220,0,0,0.95))",
-      border: "1px solid rgba(255,255,255,0.12)",
-      color: "white",
-      padding: "12px 16px",
-      borderRadius: 14,
-      cursor: "pointer",
-      fontWeight: 800,
-    },
-    secondaryBtn: {
-      background: "rgba(255,255,255,0.05)",
-      border: "1px solid rgba(255,255,255,0.14)",
-      color: "rgba(255,255,255,0.9)",
-      padding: "12px 16px",
-      borderRadius: 14,
-      cursor: "pointer",
-      fontWeight: 700,
-    },
-    cvBtn: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      textDecoration: "none",
-      background: "rgba(255,255,255,0.08)",
-      border: "1px solid rgba(255,255,255,0.16)",
-      color: "rgba(255,255,255,0.92)",
-      padding: "12px 16px",
-      borderRadius: 14,
-      cursor: "pointer",
-      fontWeight: 800,
-    },
+  heroRight: { display: "flex", flexDirection: "column", gap: 14 },
+  glassCard: {
+    border: "1px solid rgba(255,255,255,0.12)",
+    background: "linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03))",
+    borderRadius: 18,
+    padding: 18,
+    boxShadow: "0 20px 60px rgba(0,0,0,0.45)",
+  },
+  cardTitle: { fontWeight: 900, fontSize: 16 },
+  cardText: { marginTop: 6, opacity: 0.8, lineHeight: 1.5, fontSize: 13 },
+  formRow: { marginTop: 14, display: "flex", gap: 10 },
+  input: {
+    flex: 1,
+    borderRadius: 14,
+    padding: "12px 12px",
+    border: "1px solid rgba(255,255,255,0.12)",
+    background: "rgba(10,14,18,0.65)",
+    color: "rgba(255,255,255,0.92)",
+    outline: "none",
+  },
+  formBtn: {
+    borderRadius: 14,
+    padding: "12px 14px",
+    border: "1px solid rgba(255,255,255,0.12)",
+    background: "rgba(255,255,255,0.92)",
+    color: "#0b0f14",
+    cursor: "pointer",
+    fontWeight: 900,
+  },
+  cardHint: { marginTop: 10, fontSize: 12, opacity: 0.6 },
+  divider: { height: 1, background: "rgba(255,255,255,0.10)", margin: "14px 0" },
+  microList: { display: "grid", gap: 6 },
+  microItem: { fontSize: 12, opacity: 0.8 },
 
-    metricsRow: {
-      display: "grid",
-      gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-      gap: 12,
-      marginTop: 8,
-      maxWidth: 620,
-    },
-    metricCard: {
-      border: "1px solid rgba(255,255,255,0.10)",
-      background: "rgba(255,255,255,0.04)",
-      borderRadius: 16,
-      padding: "12px 14px",
-    },
-    metricTop: { fontWeight: 900, fontSize: 16 },
-    metricBottom: { fontSize: 12, opacity: 0.75, marginTop: 2 },
+  sideNote: {
+    borderRadius: 18,
+    border: "1px solid rgba(255,255,255,0.10)",
+    background: "rgba(255,255,255,0.03)",
+    padding: 14,
+  },
+  sideNoteTitle: { fontWeight: 900, fontSize: 13, opacity: 0.9 },
+  sideNoteText: { marginTop: 6, fontSize: 13, opacity: 0.78, lineHeight: 1.5 },
 
-    heroRight: { display: "flex", flexDirection: "column", gap: 14 },
-    glassCard: {
-      border: "1px solid rgba(255,255,255,0.12)",
-      background: "linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03))",
-      borderRadius: 18,
-      padding: 18,
-      boxShadow: "0 20px 60px rgba(0,0,0,0.45)",
-    },
-    cardTitle: { fontWeight: 900, fontSize: 16 },
-    cardText: { marginTop: 6, opacity: 0.8, lineHeight: 1.5, fontSize: 13 },
-    formRow: { marginTop: 14, display: "flex", gap: 10 },
-    input: {
-      flex: 1,
-      borderRadius: 14,
-      padding: "12px 12px",
-      border: "1px solid rgba(255,255,255,0.12)",
-      background: "rgba(10,14,18,0.65)",
-      color: "rgba(255,255,255,0.92)",
-      outline: "none",
-    },
-    formBtn: {
-      borderRadius: 14,
-      padding: "12px 14px",
-      border: "1px solid rgba(255,255,255,0.12)",
-      background: "rgba(255,255,255,0.92)",
-      color: "#0b0f14",
-      cursor: "pointer",
-      fontWeight: 900,
-    },
-    cardHint: { marginTop: 10, fontSize: 12, opacity: 0.6 },
-    divider: { height: 1, background: "rgba(255,255,255,0.10)", margin: "14px 0" },
-    microList: { display: "grid", gap: 6 },
-    microItem: { fontSize: 12, opacity: 0.8 },
+  section: { paddingTop: 48 },
+  h2: { margin: 0, fontSize: 28, fontWeight: 950, letterSpacing: -0.5 },
+  sectionLead: { marginTop: 8, opacity: 0.75, lineHeight: 1.6, maxWidth: 720 },
 
-    sideNote: {
-      borderRadius: 18,
-      border: "1px solid rgba(255,255,255,0.10)",
-      background: "rgba(255,255,255,0.03)",
-      padding: 14,
-    },
-    sideNoteTitle: { fontWeight: 900, fontSize: 13, opacity: 0.9 },
-    sideNoteText: { marginTop: 6, fontSize: 13, opacity: 0.78, lineHeight: 1.5 },
+  grid3: { marginTop: 18, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 },
+  featureCard: {
+    border: "1px solid rgba(255,255,255,0.10)",
+    background: "rgba(255,255,255,0.04)",
+    borderRadius: 18,
+    padding: 16,
+  },
+  featureTop: { fontWeight: 900, marginBottom: 6 },
+  featureText: { opacity: 0.78, lineHeight: 1.55, fontSize: 13 },
 
-    section: { paddingTop: 48 },
-    h2: { margin: 0, fontSize: 28, fontWeight: 950, letterSpacing: -0.5 },
-    sectionLead: { marginTop: 8, opacity: 0.75, lineHeight: 1.6, maxWidth: 720 },
+  grid2: { marginTop: 18, display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 },
+  listCard: {
+    border: "1px solid rgba(255,255,255,0.10)",
+    background: "rgba(255,255,255,0.04)",
+    borderRadius: 18,
+    padding: 16,
+  },
+  listTitle: { fontWeight: 950, marginBottom: 10 },
+  ul: { margin: 0, paddingLeft: 18, opacity: 0.82, lineHeight: 1.7 },
 
-    grid3: {
-      marginTop: 18,
-      display: "grid",
-      gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-      gap: 12,
-    },
-    featureCard: {
-      border: "1px solid rgba(255,255,255,0.10)",
-      background: "rgba(255,255,255,0.04)",
-      borderRadius: 18,
-      padding: 16,
-    },
-    featureTop: { fontWeight: 900, marginBottom: 6 },
-    featureText: { opacity: 0.78, lineHeight: 1.55, fontSize: 13 },
-
-    grid2: {
-      marginTop: 18,
-      display: "grid",
-      gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
-      gap: 12,
-    },
-    listCard: {
-      border: "1px solid rgba(255,255,255,0.10)",
-      background: "rgba(255,255,255,0.04)",
-      borderRadius: 18,
-      padding: 16,
-    },
-    listTitle: { fontWeight: 950, marginBottom: 10 },
-    ul: { margin: 0, paddingLeft: 18, opacity: 0.82, lineHeight: 1.7 },
-
-    pricingGrid: {
-      marginTop: 18,
-      display: "grid",
-      gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-      gap: 12,
-    },
-    planCard: {
-      border: "1px solid rgba(255,255,255,0.10)",
-      background: "rgba(255,255,255,0.04)",
-      borderRadius: 20,
-      padding: 18,
-    },
-    planCardHighlight: {
-      border: "1px solid rgba(255,40,40,0.35)",
-      background: "linear-gradient(180deg, rgba(255,40,40,0.10), rgba(255,255,255,0.03))",
-      boxShadow: "0 18px 50px rgba(255,0,0,0.10)",
-    },
-    planTop: { display: "flex", justifyContent: "space-between", gap: 10, alignItems: "flex-start" },
-    planName: { fontWeight: 950, fontSize: 16 },
+  pricingGrid: { marginTop: 18, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 },
+  planCard: {
+    border: "1px solid rgba(255,255,255,0.10)",
+    background: "rgba(255,255,255,0.04)",
+    borderRadius: 20,
+    padding: 18,
+  },
+  planCardHighlight: {
+    border: "1px solid rgba(255,40,40,0.35)",
+    background: "linear-gradient(180deg, rgba(255,40,40,0.10), rgba(255,255,255,0.03))",
+    boxShadow: "0 18px 50px rgba(255,0,0,0.10)",
+  },
+  planTop: { display: "flex", justifyContent: "space-between", gap: 10, alignItems: "flex-start" },
+  planName: { fontWeight: 950, fontSize: 16 },
   planDesc: { opacity: 0.78, fontSize: 12, marginTop: 4, lineHeight: 1.5 },
   planBadge: {
     fontSize: 11,
