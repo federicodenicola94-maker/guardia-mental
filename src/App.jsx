@@ -1,5 +1,5 @@
 import React from "react";
-const logo = "/logo-gm.jpg";
+const logo = "/logo-gm.jpeg";
 
 export default function App() {
   // ✅ Placeholders MercadoPago (después pegás los links reales)
