@@ -49,8 +49,8 @@ const CV_LINK = "https://drive.google.com/file/d/1dG_Z0P3QUMzpfiAU0cvCcDo7oX0Ry9
               <div style={S.badge}>Método práctico • Guardia real • Decisiones seguras</div>
 
               <h1 style={S.h1}>
-              DR FEDERICO DE NICOLA
-              <span style={S.h1Accent}> Sin humo. Con método.</span>
+              PENSAMIENTO CRÍTICO
+              <span style={S.h1Accent}> "No gana el que sabe más, gana el que piensa mejor" por Dr. De Nicola.</span>
               </h1>
 
                 <p style={{ ...S.lead, marginTop: "12px", fontWeight: 700 }}>
