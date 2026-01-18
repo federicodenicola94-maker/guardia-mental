@@ -49,7 +49,7 @@ const CV_LINK = "https://drive.google.com/file/d/1dG_Z0P3QUMzpfiAU0cvCcDo7oX0Ry9
               <div style={S.badge}>Método práctico • Guardia real • Decisiones seguras</div>
 
               <h1 style={S.h1}>
-              Pensá como emergentólogo en guardia.
+              DR FEDERICO DE NICOLA
               <span style={S.h1Accent}> Sin humo. Con método.</span>
               </h1>
 
@@ -624,4 +624,5 @@ if (typeof window !== "undefined") {
   apply();
   m.addEventListener?.("change", apply);
 }
+
 
